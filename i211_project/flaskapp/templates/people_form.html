@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{{ url_for('add_person') }}" method="post">
+    {{ form.csrf_token }}
+
+    <!-- Name field -->
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+
+    <!-- Address field -->
+    <div class="mb-3">
+        <label for="address" class="form-label">Home Address</label>
+        <input type="text" class="form-control" id="address" name="home_address" required>
+    </div>
+
+    <!-- Email field -->
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+
+    <!-- Date of Birth field -->
+    <div class="mb-3">
+        <label for="dob" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="dob" name="date_of_birth" required>
+    </div>
+
+    <!-- Mobile Phone field -->
+    <div class="mb-3">
+        <label for="phone" class="form-label">Mobile Phone</label>
+        <input type="tel" class="form-control" id="phone" name="mobile_phone" required>
+    </div>
+
+    <!-- Submit and Reset buttons -->
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>
+
+<a href="{{ url_for('people') }}" class="btn btn-outline-secondary">Back to People List</a>
+
+
+{% endblock %}

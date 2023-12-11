@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add New Venue</h2>
+    <form action="{{ url_for('add_venue') }}" method="post" novalidate>
+        {{ form.csrf_token }}
+        
+        <!-- Venue Name Field -->
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", required=True) }}
+            {% if form.name.errors %}
+                <div class="alert alert-danger">
+                    {{ form.name.errors[0] }}
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Address Field -->
+        <div class="mb-3">
+            {{ form.address.label(class="form-label") }}
+            {{ form.address(class="form-control", required=True) }}
+            {% if form.address.errors %}
+                <div class="alert alert-danger">
+                    {{ form.address.errors[0] }}
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Contact Phone Field -->
+        <div class="mb-3">
+            {{ form.contact_phone.label(class="form-label") }}
+            {{ form.contact_phone(class="form-control", required=True, pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$") }}
+            {% if form.contact_phone.errors %}
+                <div class="alert alert-danger">
+                    {{ form.contact_phone.errors[0] }}
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Rental Fee Field -->
+        <div class="mb-3">
+            {{ form.rental_fee.label(class="form-label") }}
+            {{ form.rental_fee(class="form-control", required=True, pattern="^\d+(\.\d{1,2})?$") }}
+            {% if form.rental_fee.errors %}
+                <div class="alert alert-danger">
+                    {{ form.rental_fee.errors[0] }}
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Maximum Attendees Field -->
+        <div class="mb-3">
+            {{ form.max_attendees.label(class="form-label") }}
+            {{ form.max_attendees(class="form-control", required=True, pattern="^\d+$") }}
+            {% if form.max_attendees.errors %}
+                <div class="alert alert-danger">
+                    {{ form.max_attendees.errors[0] }}
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Reset and Submit Buttons -->
+        <div class="mb-3">
+            <button type="reset" class="btn btn-secondary">Reset</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
